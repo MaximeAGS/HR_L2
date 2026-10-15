@@ -7,7 +7,7 @@
                                     $Employee_id=$_POST['employé'];
                                 }            
                             }              
-                            $pdo =new PDO("mysql:host=localhost;dbname=cena","root","");
+                            $pdo =new PDO("mysql:host=localhost;dbname=smarthr","root","");
                             $sql="INSERT INTO suivre(id, `idtypetrainer`, `Employee_id`) VALUES ('3','$idtypetrainer','$Employee_id' )";
                             $sql2="INSERT INTO former(`idtypetrainer`, `idtrainer`) VALUES ('$idtypetrainer','$idtrainer')";
                             $former=$pdo->query($sql2);

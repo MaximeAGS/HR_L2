@@ -11,7 +11,7 @@
                                     $typetraining=$_POST['formation'];
                                 }            
                             }              
-                            $pdo =new PDO("mysql:host=localhost;dbname=cena","root","");
+                            $pdo =new PDO("mysql:host=localhost;dbname=smarthr","root","");
                             $sql="INSERT INTO trainer(id, nom, prenom , email , contact , typetraining) VALUES   ('$id','$nom','$prenom' , '$email' , '$contact', '$typetraining')";
                             $trainer = $pdo->query($sql);
 

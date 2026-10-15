@@ -8,7 +8,7 @@
                                     $Date=$_POST['heure'];
                                 }            
                             }              
-                            $pdo =new PDO("mysql:host=localhost;dbname=cena","root","");
+                            $pdo =new PDO("mysql:host=localhost;dbname=smarthr","root","");
                             $sql="INSERT INTO departments(id, Department, Date) VALUES   ('$id','$Department','$Date')";
                             $departments = $pdo->query($sql);
 

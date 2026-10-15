@@ -8,7 +8,7 @@
                                     $description=$_POST['des'];
                                 }            
                             }              
-                            $pdo =new PDO("mysql:host=localhost;dbname=cena","root","");
+                            $pdo =new PDO("mysql:host=localhost;dbname=smarthr","root","");
                             $sql="INSERT INTO typetrainer(id, type, description ) VALUES   ('$id','$type','$description')";
                             $trainer = $pdo->query($sql);
 

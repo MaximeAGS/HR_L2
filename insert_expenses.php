@@ -8,7 +8,7 @@
                                     $personnel=$_POST['person'];
                                 }            
                             }              
-                            $pdo =new PDO("mysql:host=localhost;dbname=cena","root","");
+                            $pdo =new PDO("mysql:host=localhost;dbname=smarthr","root","");
                             $sql="INSERT INTO expenses(id, title, date_achat, prix, personnel) VALUES  ('','$title','$date_achat', '$prix','$personnel')";
                             $expense = $pdo->query($sql);
 

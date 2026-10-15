@@ -18,7 +18,7 @@
                                     $DateTime=$_POST['time'];
                                 }            
                             }              
-                            $pdo =new PDO("mysql:host=localhost;dbname=cena","root","");
+                            $pdo =new PDO("mysql:host=localhost;dbname=smarthr","root","");
                             $sql="INSERT INTO employees (Employee_id, FirstName, LastName, UserName, Email, Password, Phone, Department, Designation, Joining_Date, Picture, DateTime) VALUES ('$Employee_id','$FirstName','$LastName','$UserName','$Email','$Password','$Phone','$Department','$Designation','$Joining_Date','$Picture','$DateTime')";
                             $employees = $pdo->query($sql);
 

@@ -7,7 +7,7 @@
                                     $date=$_POST['date'];
                                 }            
                             }              
-                            $pdo =new PDO("mysql:host=localhost;dbname=cena","root","");
+                            $pdo =new PDO("mysql:host=localhost;dbname=smarthr","root","");
                             $sql="INSERT INTO profit(id, title, montant, date) VALUES  ('','$title','$montant', '$date')";
                             $budget = $pdo->query($sql);
 

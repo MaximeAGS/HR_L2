@@ -18,7 +18,7 @@
                                     $date=$_POST['date'];
                                 }            
                             }              
-                            $pdo =new PDO("mysql:host=localhost;dbname=cena","root","");
+                            $pdo =new PDO("mysql:host=localhost;dbname=smarthr","root","");
                             $sql="INSERT INTO clients(id_client, FirstName, LastName, UserName, Email, Password, Phone, Company, Address, Status, Picture, date)  VALUES ('$id_client','$FirstName','$LastName','$UserName','$Email','$Password','$Phone','$Company','$Address','$Status','$Picture','$date')";
                             $clients = $pdo->query($sql);
 

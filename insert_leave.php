@@ -9,7 +9,7 @@
                                     $Reason=$_POST['raison'];
                                 }            
                             }              
-                            $pdo =new PDO("mysql:host=localhost;dbname=cena","root","");
+                            $pdo =new PDO("mysql:host=localhost;dbname=smarthr","root","");
                             $sql="INSERT INTO leaves (id, Employee, Starting_At, Ending_On, Days, Reason) VALUES  ('','$Employee','$Starding_At', '$Ending_On' , '$Days' , '$Reason')";
                             $leave = $pdo->query($sql);
                             if($leave)
