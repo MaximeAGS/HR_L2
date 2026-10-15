@@ -24,10 +24,10 @@
 		<meta name="keywords" content="admin, estimates, bootstrap, business, corporate, creative, management, minimal, modern, accounts, invoice, html5, responsive, CRM, Projects">
         <meta name="author" content="Dreamguys - Bootstrap Admin Template">
         <meta name="robots" content="noindex, nofollow">
-        <title>Leaves - HRMS admin template</title>
+        <title>Leaves - HRMS admin</title>
 		
 		<!-- Favicon -->
-        <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
+        <link rel="shortcut icon" type="image/x-icon" href="assets/img/logo_mini.png">
 		
 		<!-- Bootstrap CSS -->
         <link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -85,7 +85,7 @@
 								</ul>
 							</div>
 							<div class="col-auto float-right ml-auto">
-								<a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_leave"><i class="fa fa-plus"></i> Add Leave</a>
+								<a href="add_leave.php" class="btn add-btn"><i class="fa fa-plus"></i> Add Leave</a>
 							</div>
 						</div>
 					</div>
@@ -99,11 +99,11 @@
 								<table class="table table-striped custom-table mb-0 datatable">
 									<thead>
 										<tr>
-											<th>Employee</th>
-											<th>From</th>
-											<th>To</th>
-											<th>No of Days</th>
-											<th>Reason</th>
+											<th>Employé</th>
+											<th>Date_debut</th>
+											<th>Date_fin</th>
+											<th>Nombre de jours</th>
+											<th>Raison</th>
 											<th class="text-right">Actions</th>
 										</tr>
 									</thead>
@@ -131,7 +131,7 @@
 													<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
 													<div class="dropdown-menu dropdown-menu-right">
 														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_leave"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_approve"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+														<a class="dropdown-item"  href="delete/delete_leave_employé.php?id=<?php echo htmlentities($row->id); ?>"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
 													</div>
 												</div>
 											</td>

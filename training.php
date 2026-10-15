@@ -15,10 +15,10 @@
 		<meta name="keywords" content="admin, estimates, bootstrap, business, corporate, creative, management, minimal, modern, accounts, invoice, html5, responsive, CRM, Projects">
         <meta name="author" content="Dreamguys - Bootstrap Admin Template">
         <meta name="robots" content="noindex, nofollow">
-        <title>Training - HRMS admin template</title>
+        <title>Formation - HRMS admin</title>
 		
 		<!-- Favicon -->
-        <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
+        <link rel="shortcut icon" type="image/x-icon" href="assets/img/logo_mini.png">
 		
 		<!-- Bootstrap CSS -->
         <link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -69,122 +69,91 @@
 					<div class="page-header">
 						<div class="row align-items-center">
 							<div class="col">
-								<h3 class="page-title">Training</h3>
+								<h3 class="page-title">Formation</h3>
 								<ul class="breadcrumb">
-									<li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
-									<li class="breadcrumb-item active">Training</li>
+									<li class="breadcrumb-item"><a href="index.php">Tableau de bord</a></li>
+									<li class="breadcrumb-item active">Formation</li>
 								</ul>
 							</div>
 							<div class="col-auto float-right ml-auto">
-								<a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_training"><i class="fa fa-plus"></i> Add New </a>
+								<a href="ad_formation.php" class="btn add-btn" ><i class="fa fa-plus"></i> Ajouter nouveau</a>
 							</div>
 						</div>
 					</div>
 					<!-- /Page Header -->
 					
-					<div class="row">
-						<div class="col-md-12">
+					
 							<div class="table-responsive">
 								<table class="table table-striped custom-table mb-0 datatable">
 									<thead>
 										<tr>
 											<th style="width: 30px;">#</th>
-											<th>Training Type</th>
-											<th>Trainer</th>
-											<th>Employee</th>
-											<th>Time Duration</th>
+											<th>Formation</th>
+											<th>Formateur</th>
+											<th>Employé</th>
 											<th>Description </th>
-											<th>Cost </th>
-											<th>Status </th>
 											<th class="text-right">Action</th>
 										</tr>
 									</thead>
 									<tbody>
+									<?php
+														$sql = "SELECT * FROM typetrainer";
+														$query = $dbh->prepare($sql);
+														$query->execute();
+														$results=$query->fetchAll(PDO::FETCH_OBJ);
+														$cnt=1;
+														if($query->rowCount() > 0)
+														{
+														foreach($results as $row)
+														{
+															$Formationid=htmlentities($row->id);
+													?>
 										<tr>
-											<td>1</td>
-											<td>Git Training</td>
-											<td>
-												<h2 class="table-avatar">
-													<a href="profile.php" class="avatar"><img alt="" src="assets/img/profiles/avatar-02.jpg"></a>
-													<a href="profile.php">John Doe </a>
-												</h2>
-											</td>
-											<td>
-												<ul class="team-members">
-													<li>
-														<a href="#" title="Bernardo Galaviz" data-toggle="tooltip"><img alt="" src="assets/img/profiles/avatar-10.jpg"></a>
-													</li>
-													<li>
-														<a href="#" title="Richard Miles" data-toggle="tooltip"><img alt="" src="assets/img/profiles/avatar-09.jpg"></a>
-													</li>
-													<li class="dropdown avatar-dropdown">
-														<a href="#" class="all-users dropdown-toggle" data-toggle="dropdown" aria-expanded="false">+15</a>
-														<div class="dropdown-menu dropdown-menu-right">
-															<div class="avatar-group">
-																<a class="avatar avatar-xs" href="#">
-																	<img alt="" src="assets/img/profiles/avatar-02.jpg">
-																</a>
-																<a class="avatar avatar-xs" href="#">
-																	<img alt="" src="assets/img/profiles/avatar-09.jpg">
-																</a>
-																<a class="avatar avatar-xs" href="#">
-																	<img alt="" src="assets/img/profiles/avatar-10.jpg">
-																</a>
-																<a class="avatar avatar-xs" href="#">
-																	<img alt="" src="assets/img/profiles/avatar-05.jpg">
-																</a>
-																<a class="avatar avatar-xs" href="#">
-																	<img alt="" src="assets/img/profiles/avatar-11.jpg">
-																</a>
-																<a class="avatar avatar-xs" href="#">
-																	<img alt="" src="assets/img/profiles/avatar-12.jpg">
-																</a>
-																<a class="avatar avatar-xs" href="#">
-																	<img alt="" src="assets/img/profiles/avatar-13.jpg">
-																</a>
-																<a class="avatar avatar-xs" href="#">
-																	<img alt="" src="assets/img/profiles/avatar-01.jpg">
-																</a>
-																<a class="avatar avatar-xs" href="#">
-																	<img alt="" src="assets/img/profiles/avatar-16.jpg">
-																</a>
-															</div>
-															<div class="avatar-pagination">
-																<ul class="pagination">
-																	<li class="page-item">
-																		<a class="page-link" href="#" aria-label="Previous">
-																			<span aria-hidden="true">«</span>
-																			<span class="sr-only">Previous</span>
-																		</a>
-																	</li>
-																	<li class="page-item"><a class="page-link" href="#">1</a></li>
-																	<li class="page-item"><a class="page-link" href="#">2</a></li>
-																	<li class="page-item">
-																		<a class="page-link" href="#" aria-label="Next">
-																			<span aria-hidden="true">»</span>
-																			<span class="sr-only">Next</span>
-																		</a>
-																	</li>
-																</ul>
-															</div>
-														</div>
-													</li> 
-												</ul>
-											</td>
-											<td>7 May 2019 - 10 May 2019</td>
-											<td>Lorem ipsum dollar</td>
-											<td>$400</td>
+											<td><?php echo $Formationid?></td>
+											<td><?php echo  htmlentities($row->type);?></td>
 											<td>
 												<div class="dropdown action-label">
 													<a class="btn btn-white btn-sm btn-rounded dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">
-														<i class="fa fa-dot-circle-o text-success"></i> Active
+														<i class="fa fa-dot-circle-o "></i> Voir
 													</a>
 													<div class="dropdown-menu">
-														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-success"></i> Active</a>
-														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-danger"></i> Inactive</a>
+													<?php
+														$sql = "SELECT * FROM trainer where id IN( select id from suivre where id=$Formationid)";
+														$query = $dbh->prepare($sql);
+														$query->execute();
+														$resultss=$query->fetchAll(PDO::FETCH_OBJ);
+														$cnt=1;
+														if($query->rowCount() > 0)
+														{
+														foreach($resultss as $rows)
+														{	
+													?>
+													<h9 class="dropdown-item"><?php echo htmlentities($rows->prenom)." ".htmlentities($rows->nom); ?></h9>
+													<?php  }}?>	
 													</div>
-												</div>
 											</td>
+											<td>
+												<div class="dropdown action-label">
+													<a class="btn btn-white btn-sm btn-rounded dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">
+														<i class="fa fa-dot-circle-o "></i> Voir
+													</a>
+													<div class="dropdown-menu">
+											<?php
+														$sql = "SELECT * FROM employees where Employee_id IN( select Employee_id from suivre where id=$Formationid)";
+														$query = $dbh->prepare($sql);
+														$query->execute();
+														$results=$query->fetchAll(PDO::FETCH_OBJ);
+														$cnt=1;
+														if($query->rowCount() > 0)
+														{
+														foreach($results as $rows)
+														{	
+													?>
+													<h9 class="dropdown-item"><?php echo htmlentities($rows->FirstName)." ".htmlentities($rows->LastName); ?></h9>
+													<?php  }}?>	
+													</div>
+													</td>
+													<td><?php echo htmlentities($row->description); ?></td>
 											<td class="text-right">
 												<div class="dropdown dropdown-action">
 													<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
@@ -195,391 +164,11 @@
 												</div>
 											</td>
 										</tr>
-										<tr>
-											<td>2</td>
-											<td>Swift Training</td>
-											<td>
-												<h2 class="table-avatar">
-													<a href="profile.php" class="avatar"><img alt="" src="assets/img/profiles/avatar-09.jpg"></a>
-													<a href="profile.php">Richard Miles</a>
-												</h2>
-											</td>
-											<td>
-												<ul class="team-members">
-													<li>
-														<a href="#" title="John Doe" data-toggle="tooltip"><img alt="" src="assets/img/profiles/avatar-02.jpg"></a>
-													</li>
-													<li>
-														<a href="#" title="Richard Miles" data-toggle="tooltip"><img alt="" src="assets/img/profiles/avatar-09.jpg"></a>
-													</li>
-													<li class="dropdown avatar-dropdown">
-														<a href="#" class="all-users dropdown-toggle" data-toggle="dropdown" aria-expanded="false">+15</a>
-														<div class="dropdown-menu dropdown-menu-right">
-															<div class="avatar-group">
-																<a class="avatar avatar-xs" href="#">
-																	<img alt="" src="assets/img/profiles/avatar-02.jpg">
-																</a>
-																<a class="avatar avatar-xs" href="#">
-																	<img alt="" src="assets/img/profiles/avatar-09.jpg">
-																</a>
-																<a class="avatar avatar-xs" href="#">
-																	<img alt="" src="assets/img/profiles/avatar-10.jpg">
-																</a>
-																<a class="avatar avatar-xs" href="#">
-																	<img alt="" src="assets/img/profiles/avatar-05.jpg">
-																</a>
-																<a class="avatar avatar-xs" href="#">
-																	<img alt="" src="assets/img/profiles/avatar-11.jpg">
-																</a>
-																<a class="avatar avatar-xs" href="#">
-																	<img alt="" src="assets/img/profiles/avatar-12.jpg">
-																</a>
-																<a class="avatar avatar-xs" href="#">
-																	<img alt="" src="assets/img/profiles/avatar-13.jpg">
-																</a>
-																<a class="avatar avatar-xs" href="#">
-																	<img alt="" src="assets/img/profiles/avatar-01.jpg">
-																</a>
-																<a class="avatar avatar-xs" href="#">
-																	<img alt="" src="assets/img/profiles/avatar-16.jpg">
-																</a>
-															</div>
-															<div class="avatar-pagination">
-																<ul class="pagination">
-																	<li class="page-item">
-																		<a class="page-link" href="#" aria-label="Previous">
-																			<span aria-hidden="true">«</span>
-																			<span class="sr-only">Previous</span>
-																		</a>
-																	</li>
-																	<li class="page-item"><a class="page-link" href="#">1</a></li>
-																	<li class="page-item"><a class="page-link" href="#">2</a></li>
-																	<li class="page-item">
-																		<a class="page-link" href="#" aria-label="Next">
-																			<span aria-hidden="true">»</span>
-																			<span class="sr-only">Next</span>
-																		</a>
-																	</li>
-																</ul>
-															</div>
-														</div>
-													</li> 
-												</ul>
-											</td>
-											<td>7 May 2019 - 10 May 2019</td>
-											<td>Lorem ipsum dollar</td>
-											<td>$800</td>
-											<td>
-												<div class="dropdown action-label">
-													<a class="btn btn-white btn-sm btn-rounded dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">
-														<i class="fa fa-dot-circle-o text-danger"></i> Inactive
-													</a>
-													<div class="dropdown-menu">
-														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-success"></i> Active</a>
-														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-danger"></i> Inactive</a>
-													</div>
-												</div>
-											</td>
-											<td class="text-right">
-												<div class="dropdown dropdown-action">
-													<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-													<div class="dropdown-menu dropdown-menu-right">
-														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_training"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_training"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-													</div>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>3</td>
-											<td>Node Training</td>
-											<td>
-												<h2 class="table-avatar">
-													<a href="profile.php" class="avatar"><img alt="" src="assets/img/profiles/avatar-02.jpg"></a>
-													<a href="profile.php">John Doe </a>
-												</h2>
-											</td>
-											<td>
-												<ul class="team-members">
-													<li>
-														<a href="#" title="Bernardo Galaviz" data-toggle="tooltip"><img alt="" src="assets/img/profiles/avatar-10.jpg"></a>
-													</li>
-													<li>
-														<a href="#" title="Richard Miles" data-toggle="tooltip"><img alt="" src="assets/img/profiles/avatar-09.jpg"></a>
-													</li>
-													<li class="dropdown avatar-dropdown">
-														<a href="#" class="all-users dropdown-toggle" data-toggle="dropdown" aria-expanded="false">+15</a>
-														<div class="dropdown-menu dropdown-menu-right">
-															<div class="avatar-group">
-																<a class="avatar avatar-xs" href="#">
-																	<img alt="" src="assets/img/profiles/avatar-02.jpg">
-																</a>
-																<a class="avatar avatar-xs" href="#">
-																	<img alt="" src="assets/img/profiles/avatar-09.jpg">
-																</a>
-																<a class="avatar avatar-xs" href="#">
-																	<img alt="" src="assets/img/profiles/avatar-10.jpg">
-																</a>
-																<a class="avatar avatar-xs" href="#">
-																	<img alt="" src="assets/img/profiles/avatar-05.jpg">
-																</a>
-																<a class="avatar avatar-xs" href="#">
-																	<img alt="" src="assets/img/profiles/avatar-11.jpg">
-																</a>
-																<a class="avatar avatar-xs" href="#">
-																	<img alt="" src="assets/img/profiles/avatar-12.jpg">
-																</a>
-																<a class="avatar avatar-xs" href="#">
-																	<img alt="" src="assets/img/profiles/avatar-13.jpg">
-																</a>
-																<a class="avatar avatar-xs" href="#">
-																	<img alt="" src="assets/img/profiles/avatar-01.jpg">
-																</a>
-																<a class="avatar avatar-xs" href="#">
-																	<img alt="" src="assets/img/profiles/avatar-16.jpg">
-																</a>
-															</div>
-															<div class="avatar-pagination">
-																<ul class="pagination">
-																	<li class="page-item">
-																		<a class="page-link" href="#" aria-label="Previous">
-																			<span aria-hidden="true">«</span>
-																			<span class="sr-only">Previous</span>
-																		</a>
-																	</li>
-																	<li class="page-item"><a class="page-link" href="#">1</a></li>
-																	<li class="page-item"><a class="page-link" href="#">2</a></li>
-																	<li class="page-item">
-																		<a class="page-link" href="#" aria-label="Next">
-																			<span aria-hidden="true">»</span>
-																			<span class="sr-only">Next</span>
-																		</a>
-																	</li>
-																</ul>
-															</div>
-														</div>
-													</li> 
-												</ul>
-											</td>
-											<td>7 May 2019 - 10 May 2019</td>
-											<td>Lorem ipsum dollar</td>
-											<td>$400</td>
-											<td>
-												<div class="dropdown action-label">
-													<a class="btn btn-white btn-sm btn-rounded dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">
-														<i class="fa fa-dot-circle-o text-success"></i> Active
-													</a>
-													<div class="dropdown-menu">
-														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-success"></i> Active</a>
-														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-danger"></i> Inactive</a>
-													</div>
-												</div>
-											</td>
-											<td class="text-right">
-												<div class="dropdown dropdown-action">
-													<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-													<div class="dropdown-menu dropdown-menu-right">
-														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_training"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_training"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-													</div>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>4</td>
-											<td>Angular Training</td>
-											<td>
-												<h2 class="table-avatar">
-													<a href="profile.php" class="avatar"><img alt="" src="assets/img/profiles/avatar-05.jpg"></a>
-													<a href="profile.php">Mike Litorus </a>
-												</h2>
-											</td>
-											<td>
-												<ul class="team-members">
-													<li>
-														<a href="#" title="Bernardo Galaviz" data-toggle="tooltip"><img alt="" src="assets/img/profiles/avatar-10.jpg"></a>
-													</li>
-													<li>
-														<a href="#" title="Richard Miles" data-toggle="tooltip"><img alt="" src="assets/img/profiles/avatar-09.jpg"></a>
-													</li>
-													<li class="dropdown avatar-dropdown">
-														<a href="#" class="all-users dropdown-toggle" data-toggle="dropdown" aria-expanded="false">+15</a>
-														<div class="dropdown-menu dropdown-menu-right">
-															<div class="avatar-group">
-																<a class="avatar avatar-xs" href="#">
-																	<img alt="" src="assets/img/profiles/avatar-02.jpg">
-																</a>
-																<a class="avatar avatar-xs" href="#">
-																	<img alt="" src="assets/img/profiles/avatar-09.jpg">
-																</a>
-																<a class="avatar avatar-xs" href="#">
-																	<img alt="" src="assets/img/profiles/avatar-10.jpg">
-																</a>
-																<a class="avatar avatar-xs" href="#">
-																	<img alt="" src="assets/img/profiles/avatar-05.jpg">
-																</a>
-																<a class="avatar avatar-xs" href="#">
-																	<img alt="" src="assets/img/profiles/avatar-11.jpg">
-																</a>
-																<a class="avatar avatar-xs" href="#">
-																	<img alt="" src="assets/img/profiles/avatar-12.jpg">
-																</a>
-																<a class="avatar avatar-xs" href="#">
-																	<img alt="" src="assets/img/profiles/avatar-13.jpg">
-																</a>
-																<a class="avatar avatar-xs" href="#">
-																	<img alt="" src="assets/img/profiles/avatar-01.jpg">
-																</a>
-																<a class="avatar avatar-xs" href="#">
-																	<img alt="" src="assets/img/profiles/avatar-16.jpg">
-																</a>
-															</div>
-															<div class="avatar-pagination">
-																<ul class="pagination">
-																	<li class="page-item">
-																		<a class="page-link" href="#" aria-label="Previous">
-																			<span aria-hidden="true">«</span>
-																			<span class="sr-only">Previous</span>
-																		</a>
-																	</li>
-																	<li class="page-item"><a class="page-link" href="#">1</a></li>
-																	<li class="page-item"><a class="page-link" href="#">2</a></li>
-																	<li class="page-item">
-																		<a class="page-link" href="#" aria-label="Next">
-																			<span aria-hidden="true">»</span>
-																			<span class="sr-only">Next</span>
-																		</a>
-																	</li>
-																</ul>
-															</div>
-														</div>
-													</li> 
-												</ul>
-											</td>
-											<td>7 May 2019 - 10 May 2019</td>
-											<td>Lorem ipsum dollar</td>
-											<td>$400</td>
-											<td>
-												<div class="dropdown action-label">
-													<a class="btn btn-white btn-sm btn-rounded dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">
-														<i class="fa fa-dot-circle-o text-success"></i> Active
-													</a>
-													<div class="dropdown-menu">
-														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-success"></i> Active</a>
-														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-danger"></i> Inactive</a>
-													</div>
-												</div>
-											</td>
-											<td class="text-right">
-												<div class="dropdown dropdown-action">
-													<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-													<div class="dropdown-menu dropdown-menu-right">
-														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_training"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_training"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-													</div>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>5</td>
-											<td>Git Training</td>
-											<td>
-												<h2 class="table-avatar">
-													<a href="profile.php" class="avatar"><img alt="" src="assets/img/profiles/avatar-11.jpg"></a>
-													<a href="profile.php">Wilmer Deluna </a>
-												</h2>
-											</td>
-											<td>
-												<ul class="team-members">
-													<li>
-														<a href="#" title="Bernardo Galaviz" data-toggle="tooltip"><img alt="" src="assets/img/profiles/avatar-10.jpg"></a>
-													</li>
-													<li>
-														<a href="#" title="Richard Miles" data-toggle="tooltip"><img alt="" src="assets/img/profiles/avatar-09.jpg"></a>
-													</li>
-													<li class="dropdown avatar-dropdown">
-														<a href="#" class="all-users dropdown-toggle" data-toggle="dropdown" aria-expanded="false">+15</a>
-														<div class="dropdown-menu dropdown-menu-right">
-															<div class="avatar-group">
-																<a class="avatar avatar-xs" href="#">
-																	<img alt="" src="assets/img/profiles/avatar-02.jpg">
-																</a>
-																<a class="avatar avatar-xs" href="#">
-																	<img alt="" src="assets/img/profiles/avatar-09.jpg">
-																</a>
-																<a class="avatar avatar-xs" href="#">
-																	<img alt="" src="assets/img/profiles/avatar-10.jpg">
-																</a>
-																<a class="avatar avatar-xs" href="#">
-																	<img alt="" src="assets/img/profiles/avatar-05.jpg">
-																</a>
-																<a class="avatar avatar-xs" href="#">
-																	<img alt="" src="assets/img/profiles/avatar-11.jpg">
-																</a>
-																<a class="avatar avatar-xs" href="#">
-																	<img alt="" src="assets/img/profiles/avatar-12.jpg">
-																</a>
-																<a class="avatar avatar-xs" href="#">
-																	<img alt="" src="assets/img/profiles/avatar-13.jpg">
-																</a>
-																<a class="avatar avatar-xs" href="#">
-																	<img alt="" src="assets/img/profiles/avatar-01.jpg">
-																</a>
-																<a class="avatar avatar-xs" href="#">
-																	<img alt="" src="assets/img/profiles/avatar-16.jpg">
-																</a>
-															</div>
-															<div class="avatar-pagination">
-																<ul class="pagination">
-																	<li class="page-item">
-																		<a class="page-link" href="#" aria-label="Previous">
-																			<span aria-hidden="true">«</span>
-																			<span class="sr-only">Previous</span>
-																		</a>
-																	</li>
-																	<li class="page-item"><a class="page-link" href="#">1</a></li>
-																	<li class="page-item"><a class="page-link" href="#">2</a></li>
-																	<li class="page-item">
-																		<a class="page-link" href="#" aria-label="Next">
-																			<span aria-hidden="true">»</span>
-																			<span class="sr-only">Next</span>
-																		</a>
-																	</li>
-																</ul>
-															</div>
-														</div>
-													</li> 
-												</ul>
-											</td>
-											<td>7 May 2019 - 10 May 2019</td>
-											<td>Lorem ipsum dollar</td>
-											<td>$400</td>
-											<td>
-												<div class="dropdown action-label">
-													<a class="btn btn-white btn-sm btn-rounded dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">
-														<i class="fa fa-dot-circle-o text-success"></i> Active
-													</a>
-													<div class="dropdown-menu">
-														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-success"></i> Active</a>
-														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-danger"></i> Inactive</a>
-													</div>
-												</div>
-											</td>
-											<td class="text-right">
-												<div class="dropdown dropdown-action">
-													<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-													<div class="dropdown-menu dropdown-menu-right">
-														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_training"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_training"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-													</div>
-												</div>
-											</td>
-										</tr>
+										<?php }}?>
 									</tbody>
 								</table>
 							</div>
-						</div>
-					</div>
+				
                 </div>
 				<!-- /Page Content -->
 

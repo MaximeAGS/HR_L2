@@ -15,10 +15,10 @@
 		<meta name="keywords" content="admin, estimates, bootstrap, business, corporate, creative, management, minimal, modern, accounts, invoice, html5, responsive, CRM, Projects">
         <meta name="author" content="Dreamguys - Bootstrap Admin Template">
         <meta name="robots" content="noindex, nofollow">
-        <title>Dashboard - HRMS admin template</title>
+        <title>CBOX Sarl</title>
 		
 		<!-- Favicon -->
-        <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
+        <link rel="shortcut icon" type="image/x-icon" href="assets/img/logo_mini.png">
 		
 		<!-- Bootstrap CSS -->
         <link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -64,29 +64,32 @@
 					<div class="page-header">
 						<div class="row">
 							<div class="col-sm-12">
-								<h3 class="page-title">Welcome <?php echo htmlentities(ucfirst($_SESSION['userlogin']));?>!</h3>
-								<ul class="breadcrumb">
-									<li class="breadcrumb-item active">Dashboard</li>
-								</ul>
+								<h3 class="page-title">Bienvenue <?php echo htmlentities(ucfirst($_SESSION['userlogin']));?>!</h3>
 							</div>
 						</div>
 					</div>
 					<!-- /Page Header -->
-				
+					<?php 
+										$sql = "SELECT id from projets";
+										$query = $dbh->prepare($sql);
+										$query->execute();
+										$results = $query->fetchAll(PDO::FETCH_OBJ);
+										$tocount = $query->rowCount();
+									?>
 					<div class="row">
 						<div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
 							<div class="card dash-widget">
 								<div class="card-body">
 									<span class="dash-widget-icon"><i class="fa fa-cubes"></i></span>
 									<div class="dash-widget-info">
-										<h3>112</h3>
-										<span>Projects</span>
+										<h3><?php echo $tocount; ?></h3>
+										<span>Projets</span>
 									</div>
 								</div>
 							</div>
 						</div>
 						<?php 
-										$sql = "SELECT id from clients";
+										$sql = "SELECT id_client from clients";
 										$query = $dbh->prepare($sql);
 										$query->execute();
 										$results = $query->fetchAll(PDO::FETCH_OBJ);
@@ -109,18 +112,25 @@
 									<span class="dash-widget-icon"><i class="fa fa-diamond"></i></span>
 									<div class="dash-widget-info">
 										<h3>37</h3>
-										<span>Tasks</span>
+										<span>Taches</span>
 									</div>
 								</div>
 							</div>
 						</div>
+									<?php 
+										$sql = "SELECT Employee_id from employees";
+										$query = $dbh->prepare($sql);
+										$query->execute();
+										$results = $query->fetchAll(PDO::FETCH_OBJ);
+										$totcount = $query->rowCount();
+									?>
 						<div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
 							<div class="card dash-widget">
 								<div class="card-body">
 									<span class="dash-widget-icon"><i class="fa fa-user"></i></span>
 									<div class="dash-widget-info">
-										<h3>218</h3>
-										<span>Employees</span>
+										<h3><?php echo $totcount; ?> </h3>
+										<span>Employés</span>
 									</div>
 								</div>
 							</div>
@@ -129,10 +139,11 @@
 					
 					
 					
+					
 					<div class="row">
 						<div class="col-md-12">
 							<div class="card-group m-b-30">
-								<div class="card">
+								<!-- <div class="card">
 									<div class="card-body">
 										<div class="d-flex justify-content-between mb-3">
 											<div>
@@ -148,59 +159,83 @@
 										</div>
 										<p class="mb-0">Overall Employees 218</p>
 									</div>
-								</div>
-							
+								</div> -->
+
+								<?php 
+										$sql = "SELECT SUM(montant) AS som from budget";
+										$query = $dbh->prepare($sql);
+										$query->execute();
+										$results = $query->fetch(PDO::FETCH_ASSOC);
+										$totaux = $results ['som'];
+										
+									?>
 								<div class="card">
 									<div class="card-body">
 										<div class="d-flex justify-content-between mb-3">
 											<div>
-												<span class="d-block">Earnings</span>
+												<span class="d-block">Budget</span>
 											</div>
-											<div>
+											<!-- <div>
 												<span class="text-success">+12.5%</span>
-											</div>
+											</div> -->
 										</div>
-										<h3 class="mb-3">$1,42,300</h3>
+										<h3 class="mb-3">$<?php echo $totaux; ?> </h3>
 										<div class="progress mb-2" style="height: 5px;">
 											<div class="progress-bar bg-primary" role="progressbar" style="width: 70%;" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
 										</div>
-										<p class="mb-0">Previous Month <span class="text-muted">$1,15,852</span></p>
+										<!-- <p class="mb-0">Previous Month <span class="text-muted">$1,15,852</span></p> -->
 									</div>
 								</div>
-							
+
+								<?php 
+										$sql = "SELECT SUM(prix) AS somme from expenses";
+										$query = $dbh->prepare($sql);
+										$query->execute();
+										$results = $query->fetch(PDO::FETCH_ASSOC);
+										$total = $results ['somme'];
+										
+									?>
 								<div class="card">
 									<div class="card-body">
 										<div class="d-flex justify-content-between mb-3">
 											<div>
-												<span class="d-block">Expenses</span>
+												<span class="d-block">Dépenses</span>
 											</div>
-											<div>
+											<!-- <div>
 												<span class="text-danger">-2.8%</span>
-											</div>
+											</div> -->
 										</div>
-										<h3 class="mb-3">$8,500</h3>
+										<h3 class="mb-3">$<?php echo $total; ?> </h3>
 										<div class="progress mb-2" style="height: 5px;">
 											<div class="progress-bar bg-primary" role="progressbar" style="width: 70%;" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
 										</div>
-										<p class="mb-0">Previous Month <span class="text-muted">$7,500</span></p>
+										<!-- <p class="mb-0">Previous Month <span class="text-muted">$7,500</span></p> -->
 									</div>
 								</div>
-							
+
+								<?php 
+										$sql = "SELECT SUM(montant) AS somm from profit";
+										$query = $dbh->prepare($sql);
+										$query->execute();
+										$results = $query->fetch(PDO::FETCH_ASSOC);
+										$tota = $results ['somm'];
+										
+									?>
 								<div class="card">
 									<div class="card-body">
 										<div class="d-flex justify-content-between mb-3">
 											<div>
 												<span class="d-block">Profit</span>
 											</div>
-											<div>
+											<!-- <div>
 												<span class="text-danger">-75%</span>
-											</div>
+											</div> -->
 										</div>
-										<h3 class="mb-3">$1,12,000</h3>
+										<h3 class="mb-3">$<?php echo $tota; ?></h3>
 										<div class="progress mb-2" style="height: 5px;">
 											<div class="progress-bar bg-primary" role="progressbar" style="width: 70%;" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
 										</div>
-										<p class="mb-0">Previous Month <span class="text-muted">$1,42,000</span></p>
+										<!-- <p class="mb-0">Previous Month <span class="text-muted">$1,42,000</span></p> -->
 									</div>
 								</div>
 							</div>
@@ -209,7 +244,7 @@
 					
 					
 					
-					<div class="row">
+					<!-- <div class="row">
 						<div class="col-md-12 d-flex">
 							<div class="card card-table flex-fill">
 								<div class="card-header">
@@ -352,7 +387,7 @@
 						</div>
 					</div>
 				
-				</div>
+				</div> -->
 				<!-- /Page Content -->
 
    </div>

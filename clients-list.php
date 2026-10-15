@@ -26,7 +26,7 @@
         <title>Clients - HRMS admin template</title>
 		
 		<!-- Favicon -->
-        <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
+        <link rel="shortcut icon" type="image/x-icon" href="assets/img/logo_mini.png">
 		
 		<!-- Bootstrap CSS -->
         <link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -81,7 +81,7 @@
 								</ul>
 							</div>
 							<div class="col-auto float-right ml-auto">
-								<a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_client"><i class="fa fa-plus"></i> Add Client</a>
+								<a href="add_client.php" class="btn add-btn" ><i class="fa fa-plus"></i> Add Client</a>
 								<div class="view-icons">
 									<a href="clients.php" class="grid-view btn btn-link"><i class="fa fa-th"></i></a>
 									<a href="clients-list.php" class="list-view btn btn-link active"><i class="fa fa-bars"></i></a>
@@ -92,52 +92,49 @@
 					<!-- /Page Header -->
 					
 					<!-- Search Filter -->
-					<div class="row filter-row">
-						<div class="col-sm-6 col-md-3">  
-							<div class="form-group form-focus">
-								<input type="text" class="form-control floating">
-								<label class="focus-label">Client ID</label>
-							</div>
-						</div>
-						<div class="col-sm-6 col-md-3">  
-							<div class="form-group form-focus">
-								<input type="text" class="form-control floating">
-								<label class="focus-label">Client Name</label>
-							</div>
-						</div>
-						<div class="col-sm-6 col-md-3"> 
-							<div class="form-group form-focus select-focus">
-								<select class="select floating"> 
-									<option>Select Company</option>
-									<option>Global Technologies</option>
-									<option>Delta Infotech</option>
-								</select>
-								<label class="focus-label">Company</label>
-							</div>
-						</div>
-						<div class="col-sm-6 col-md-3">  
-							<a href="#" class="btn btn-success btn-block"> Search </a>  
-						</div>     
-                    </div>
+					
 					<!-- Search Filter -->
-
+					<form  method="POST">
+						<div class="row filter-row">	
+						<div class="col-sm-6 col-md-3">  
+								<div class="form-group form-focus">
+									<input type="text" class="form-control floating" name="employé" required>
+									<label class="focus-label">Tapez ici</label>
+								</div>
+							</div> 
+							<div class="col-sm-6 col-md-3">  
+								<input type="submit" name="search" class="btn btn-success btn-block" value="Rechercher">  
+						</div>     
+						</div> 
+					</form>
+					<?php 
+						if(isset($_POST['search']))
+							{
+								$employé=$_POST['employé'];
+								$sql="SELECT * FROM clients WHERE id_client='$employé' or FirstName='$employé' or LastName='$employé' or UserName='$employé' or Email='$employé' or Password='$employé' or Phone='$employé' or company='$employé' or Address='$employé'  or Date='$employé' ";
+							}
+							else
+							{
+								$sql="SELECT * FROM clients";
+						}
+					?>
 					<div class="row">
 						<div class="col-md-12">
 							<div class="table-responsive">
 								<table class="table table-striped custom-table datatable">
 									<thead>
 										<tr>
+											<th> ID Client </th>
 											<th>Name</th>
-											<th>Client ID</th>
-											<th>Contact Person</th>
+											<th>Company</th>
 											<th>Email</th>
 											<th>Mobile</th>
-											<th>Status</th>
+											<th>Adresse</th>
 											<th class="text-right">Action</th>
 										</tr>
 									</thead>
 									<?php
-										$sql = "SELECT * FROM clients";
+										// $sql = "SELECT * FROM clients";
 										$query = $dbh->prepare($sql);
 										$query->execute();
 										$results=$query->fetchAll(PDO::FETCH_OBJ);
@@ -149,31 +146,23 @@
 									?>
 									<tbody>
 										<tr>
+											<td><?php echo htmlentities($row->id_client); ?></td>
+											<td><?php echo htmlentities(($row->FirstName).' '.($row->LastName)); ?></td>
 											<td>
 												<h2 class="table-avatar">
-													<a href="client-profile.php" class="avatar"><img src="clients/<?php echo htmlentities($row->Picture); ?>" alt=""></a>
-													<a href="client-profile.php"><?php echo htmlentities($row->Company); ?></a>
+													<!-- <a href="client-profile.php" class="avatar"><img src="clients/<?php echo htmlentities($row->Picture); ?>" alt=""></a> -->
+													<?php echo htmlentities($row->Company); ?>
 												</h2>
 											</td>
-											<td><?php echo htmlentities($row->ClientId); ?></td>
-											<td><?php echo htmlentities(($row->FirstName).' '.($row->LastName)); ?></td>
 											<td><?php echo htmlentities($row->Email); ?></td>
 											<td><?php echo htmlentities($row->Phone); ?></td>
-											<td>
-												<div class="dropdown action-label">
-													<a href="#" class="btn btn-white btn-sm btn-rounded dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-dot-circle-o text-success"></i> Active </a>
-													<div class="dropdown-menu">
-														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-success"></i> Active</a>
-														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-danger"></i> Inactive</a>
-													</div>
-												</div>
-											</td>
+											<td><?php echo htmlentities($row->Address); ?></td>
 											<td class="text-right">
 												<div class="dropdown dropdown-action">
 													<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
 													<div class="dropdown-menu dropdown-menu-right">
 														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_client"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_client"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+														<a class="dropdown-item" href="delete/delete_clients.php?id=<?php echo htmlentities($row->id_client); ?>"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
 													</div>
 												</div>
 											</td>
@@ -182,7 +171,18 @@
 									<?php
 									 $cnt+=1; 
 									}
-									}?>
+									}
+									else{
+										echo "<div 
+										style='background-color: #f08080;
+										color: white;
+										width: 250px;
+										height: 40px;
+										text-align: center;'>
+										<p> Aucun résultat trouvé pour $employé.</p>
+										</div></br>
+										";
+										}?>
 								</table>
 							</div>
 						</div>

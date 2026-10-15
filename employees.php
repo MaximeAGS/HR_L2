@@ -24,10 +24,10 @@
 		<meta name="keywords" content="admin, estimates, bootstrap, business, corporate, creative, management, minimal, modern, accounts, invoice, html5, responsive, CRM, Projects">
         <meta name="author" content="Dreamguys - Bootstrap Admin Template">
         <meta name="robots" content="noindex, nofollow">
-        <title>Employees - HRMS admin template</title>
+        <title>Employees - HRMS admin </title>
 		
 		<!-- Favicon -->
-        <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
+        <link rel="shortcut icon" type="image/x-icon" href="assets/img/logo_mini.png">
 		
 		<!-- Bootstrap CSS -->
         <link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -82,48 +82,18 @@
 								</ul>
 							</div>
 							<div class="col-auto float-right ml-auto">
-								<a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_employee"><i class="fa fa-plus"></i> Add Employee</a>
+								<a href="add_employee.php" class="btn add-btn" ><i class="fa fa-plus"></i> Add Employee</a>
 								<div class="view-icons">
-									<a href="employees.php" title="Grid View" class="grid-view btn btn-link active"><i class="fa fa-th"></i></a>
+									<!-- <a href="employees-list.php" title="Grid View" class="grid-view btn btn-link active"><i class="fa fa-th"></i></a> -->
 									<a href="employees-list.php" title="Tabular View" class="list-view btn btn-link"><i class="fa fa-bars"></i></a>
 								</div>
 							</div>
 						</div>
 					</div>
-					<!-- /Page Header -->
+				</div>
 					<!-- Search Filter -->
-					<div class="row filter-row">
-						<div class="col-sm-6 col-md-3">  
-							<div class="form-group form-focus">
-								<input type="text" class="form-control floating">
-								<label class="focus-label">Employee ID</label>
-							</div>
-						</div>
-						<div class="col-sm-6 col-md-3">  
-							<div class="form-group form-focus">
-								<input type="text" class="form-control floating">
-								<label class="focus-label">Employee Name</label>
-							</div>
-						</div>
-						<div class="col-sm-6 col-md-3"> 
-							<div class="form-group form-focus select-focus">
-								<select class="select floating"> 
-									<option>Select Designation</option>
-									<option>Web Developer</option>
-									<option>Web Designer</option>
-									<option>Android Developer</option>
-									<option>Ios Developer</option>
-								</select>
-								<label class="focus-label">Designation</label>
-							</div>
-						</div>
-						<div class="col-sm-6 col-md-3">  
-							<a href="#" class="btn btn-success btn-block"> Search </a>  
-						</div>
-     </div>
-					<!-- Search Filter -->
-					<!-- user profiles list starts her -->
-
+					
+			  		
 					<div class="row staff-grid-row">
 						<?php
 										$sql = "SELECT * FROM employees";
@@ -139,13 +109,13 @@
 						<div class="col-md-4 col-sm-6 col-12 col-lg-4 col-xl-3">
 							<div class="profile-widget">
 								<div class="profile-img">
-									<a href="profile.html" class="avatar"><img src="employees/<?php echo htmlentities($row->Picture); ?>" alt="picture"></a>
+									<a  class="avatar"><img src="employees/<?php echo htmlentities($row->Picture); ?>" alt="picture"></a>
 								</div>
 								<div class="dropdown profile-action">
 									<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
 									<div class="dropdown-menu dropdown-menu-right">
 										<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_employee"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-										<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_employee"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+										<a class="dropdown-item" href="delete/delete_employee.php?id=<?php echo htmlentities($row->Employee_id); ?>" ><<i class="fa fa-trash-o m-r-5"></i> Delete</a>
 									</div>
 								</div>
 								<h4 class="user-name m-t-10 mb-0 text-ellipsis"><a href="profile.html"><?php echo htmlentities($row->FirstName)." ".htmlentities($row->LastName); ?></a></h4>
@@ -153,8 +123,8 @@
 							</div>
 						</div>	
 						<?php $cnt +=1; 
-    }
-    } ?>					
+						}
+						}?>					
 					</div>
 					
     </div>

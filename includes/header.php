@@ -1,8 +1,8 @@
-<div class="header">
+<div class="header" style="background:linear-gradient(to right , #007bff 0%, #fc6075 100%);">
 	<!-- Logo -->
 	<div class="header-left">
 		<a href="index.php" class="logo">
-			<img src="assets/img/logo.png" width="40" height="40" alt="">
+			<img src="assets/img/logo_mini.png" width="40" height="40" alt="">
 		</a>
 	</div>
 	<!-- /Logo -->
@@ -17,7 +17,7 @@
 	
 	<!-- Header Title -->
 	<div class="page-title-box">
-		<h3>Dreamguy's Technologies</h3>
+		<h3>C BOX SARL </h3>
 	</div>
 	<!-- /Header Title -->
 	
@@ -33,7 +33,7 @@
 					<i class="fa fa-search"></i>
 				</a>
 				<form action="search.php">
-					<input class="form-control" type="text" placeholder="Search here">
+					<input class="form-control" type="text" placeholder="Rechercher ici">
 					<button class="btn" type="submit"><i class="fa fa-search"></i></button>
 				</form>
 			</div>
@@ -43,7 +43,7 @@
 		
 	
 		<!-- Notifications -->
-		<li class="nav-item dropdown">
+		<!-- <li class="nav-item dropdown">
 			<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
 				<i class="fa fa-bell-o"></i> <span class="badge badge-pill">3</span>
 			</a>
@@ -66,8 +66,8 @@
 									</div>
 								</div>
 							</a>
-						</li>
-						<li class="notification-message">
+						</li> -->
+						<!-- <li class="notification-message">
 							<a href="activities.php">
 								<div class="media">
 									<span class="avatar">
@@ -92,8 +92,8 @@
 									</div>
 								</div>
 							</a>
-						</li>
-						<li class="notification-message">
+						</li> -->
+						<!-- <li class="notification-message">
 							<a href="activities.php">
 								<div class="media">
 									<span class="avatar">
@@ -118,8 +118,8 @@
 									</div>
 								</div>
 							</a>
-						</li>
-					</ul>
+						</li> -->
+					<!-- </ul>
 				</div>
 				<div class="topnav-dropdown-footer">
 					<a href="activities.php">View all Notifications</a>
@@ -129,7 +129,7 @@
 		<!-- /Notifications -->
 		
 		<!-- Message Notifications -->
-		<li class="nav-item dropdown">
+		<!-- <li class="nav-item dropdown">
 			<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
 				<i class="fa fa-comment-o"></i> <span class="badge badge-pill">8</span>
 			</a>
@@ -147,8 +147,8 @@
 										<span class="avatar">
 											<img alt="" src="assets/img/profiles/avatar-09.jpg">
 										</span>
-									</div>
-									<div class="list-body">
+									</div> -->
+									<!-- <div class="list-body">
 										<span class="message-author">Richard Miles </span>
 										<span class="message-time">12:28 AM</span>
 										<div class="clearfix"></div>
@@ -156,16 +156,16 @@
 									</div>
 								</div>
 							</a>
-						</li>
-						<li class="notification-message">
+						</li> -->
+						<!-- <li class="notification-message">
 							<a href="chat.php">
 								<div class="list-item">
 									<div class="list-left">
 										<span class="avatar">
 											<img alt="" src="assets/img/profiles/avatar-02.jpg">
 										</span>
-									</div>
-									<div class="list-body">
+									</div> --> 
+									<!-- <div class="list-body">
 										<span class="message-author">John Doe</span>
 										<span class="message-time">6 Mar</span>
 										<div class="clearfix"></div>
@@ -190,8 +190,8 @@
 									</div>
 								</div>
 							</a>
-						</li>
-						<li class="notification-message">
+						</li> -->
+						<!-- <li class="notification-message">
 							<a href="chat.php">
 								<div class="list-item">
 									<div class="list-left">
@@ -215,8 +215,8 @@
 										<span class="avatar">
 											<img alt="" src="assets/img/profiles/avatar-08.jpg">
 										</span>
-									</div>
-									<div class="list-body">
+									</div> -->
+									<!-- <div class="list-body">
 										<span class="message-author"> Catherine Manseau </span>
 										<span class="message-time">27 Feb</span>
 										<div class="clearfix"></div>
@@ -231,7 +231,7 @@
 					<a href="chat.php">View all Messages</a>
 				</div>
 			</div>
-		</li>
+		</li> -->
 		<!-- /Message Notifications -->
 
 		<?php 
@@ -244,13 +244,13 @@
 
 		<li class="nav-item dropdown has-arrow main-drop">
 			<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-				<span class="user-img"><img src="./profiles/<?php echo htmlentities($result->Picture);?>" alt="User Picture">
+				<span class="user-img"><img src="./assets/img/logo_mini.png" alt="user picture">
 				<span class="status online"></span></span>
 				<span><?php echo htmlentities(ucfirst($_SESSION['userlogin']));?></span>
 			</a>
 			<div class="dropdown-menu">
 				<a class="dropdown-item" href="profile.php">My Profile</a>
-				<a class="dropdown-item" href="settings.php">Settings</a>
+				<!-- <a class="dropdown-item" href="settings.php">Settings</a> -->
 				<a class="dropdown-item" href="logout.php">Logout</a>
 			</div>
 		</li>
@@ -262,7 +262,7 @@
 		<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
 		<div class="dropdown-menu dropdown-menu-right">
 			<a class="dropdown-item" href="profile.php">My Profile</a>
-			<a class="dropdown-item" href="settings.php">Settings</a>
+			<!-- <a class="dropdown-item" href="settings.php">Settings</a> -->
 			<a class="dropdown-item" href="login.php">Logout</a>
 		</div>
 	</div>

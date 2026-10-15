@@ -15,10 +15,10 @@
 		<meta name="keywords" content="admin, estimates, bootstrap, business, corporate, creative, management, minimal, modern, accounts, invoice, html5, responsive, CRM, Projects">
         <meta name="author" content="Dreamguys - Bootstrap Admin Template">
         <meta name="robots" content="noindex, nofollow">
-        <title>Expenses - HRMS admin template</title>
+        <title>Expenses - HRMS admin </title>
 		
 		<!-- Favicon -->
-        <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
+        <link rel="shortcut icon" type="image/x-icon" href="assets/img/logo_mini.png">
 		
 		<!-- Bootstrap CSS -->
         <link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -76,14 +76,14 @@
 								</ul>
 							</div>
 							<div class="col-auto float-right ml-auto">
-								<a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_expense"><i class="fa fa-plus"></i> Add Expense</a>
+								<a href="add_expenses.php" class="btn add-btn"><i class="fa fa-plus"></i> Add Expense</a>
 							</div>
 						</div>
 					</div>
 					<!-- /Page Header -->
 					
 					<!-- Search Filter -->
-					<div class="row filter-row">
+					<!-- <div class="row filter-row">
 						<div class="col-sm-6 col-md-3 col-lg-3 col-xl-2 col-12">  
 							<div class="form-group form-focus">
 								<input type="text" class="form-control floating">
@@ -129,24 +129,24 @@
 						<div class="col-sm-6 col-md-3 col-lg-3 col-xl-2 col-12">  
 							<a href="#" class="btn btn-success btn-block"> Search </a>  
 						</div>     
-                    </div>
+                    </div> -->
 					<!-- /Search Filter -->
 					
-					<div class="row">
+					<!-- <div class="row">
 						<div class="col-md-12">
 							<div class="table-responsive">
 								<table class="table table-striped custom-table mb-0 datatable">
 									<thead>
 										<tr>
-											<th>Item</th>
-											<th>Purchase From</th>
-											<th>Purchase Date</th>
+											<th>Item</th> -->
+											<!-- <th>Purchase From</th> -->
+											<!-- <th>Purchase Date</th>
 											<th>Purchased By</th>
 											<th>Amount</th>
-											<th>Paid By</th>
-											<th class="text-center">Status</th>
-											<th class="text-right">Actions</th>
-										</tr>
+											<th>Paid By</th> -->
+											<!-- <th class="text-center">Status</th>
+											<th class="text-right">Actions</th> -->
+										<!-- </tr>
 									</thead>
 									<tbody>
 										<tr>
@@ -220,6 +220,59 @@
 											</td>
 										</tr>
 									</tbody>
+								</table>
+							</div>
+						</div>
+					</div> -->
+
+					
+					
+					<div class="row">
+						<div class="col-md-12">
+							<div>
+								<table class="table table-striped custom-table mb-0 datatable">
+									<thead>
+										<tr>
+											<th style="width: 30px;">#</th>
+											<th>Title</th>
+											<th>Date d'achat</th>
+											<th>Prix</th>
+											<th>Personnel</th>
+											
+										</tr>
+									</thead>
+									<?php
+										$sql = "SELECT * FROM expenses";
+										$query = $dbh->prepare($sql);
+										$query->execute();
+										$results=$query->fetchAll(PDO::FETCH_OBJ);
+										$cnt=1;
+										if($query->rowCount() > 0)
+										{
+										foreach($results as $row)
+										{	
+									?>
+									<tbody>
+										<tr>
+											<td><?php echo $cnt; ?></td>
+											<td><?php echo htmlentities($row->title);?></td>
+											<td><?php echo htmlentities($row->date_achat); ?></td>
+											<td><?php echo htmlentities($row->prix); ?></td>
+											<td><?php echo htmlentities($row->personnel); ?></td>
+											<td class="text-right">
+                                            <div class="dropdown dropdown-action">
+													<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_department"><i class="fa fa-pencil m-r-5"></i> Edit</a>
+                                                    <a class="dropdown-item" href="delete/delete_depense.php?id=<?php echo htmlentities($row->id); ?>"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+                                                </div>
+												</div>
+											</td>
+										</tr>
+									</tbody>
+									<?php $cnt+=1; 
+								}
+								}?>
 								</table>
 							</div>
 						</div>

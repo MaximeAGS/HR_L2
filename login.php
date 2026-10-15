@@ -18,8 +18,15 @@
 				$hashpass=$row->Password;
 			}//verifying Password
 			if (password_verify($password, $hashpass)) {
-				$_SESSION['userlogin']=$_POST['username'];
+				if($username=="Vendetta"){
+					// $_SESSION['userlogin']=$_POST['username'];
+				echo "<script>window.location.href= 'secretaire/index.php'; </script>";
+				}
+				else{
+						 $_SESSION['userlogin']=$_POST['username'];
 				echo "<script>window.location.href= 'index.php'; </script>";
+				}
+				
 			}
 			else {
 				$wrongpassword='
@@ -55,7 +62,7 @@
 		<title>Login - HRMS admin</title>
 		
 		<!-- Favicon -->
-		<link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
+		<link rel="shortcut icon" type="image/x-icon" href="assets/img/logo_mini.png">
 		
 		<!-- Bootstrap CSS -->
 		<link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -72,7 +79,7 @@
 			<script src="assets/js/respond.min.js"></script>
 		<![endif]-->
 	</head>
-	<body class="account-page">
+	<body class="account-page" style="background:linear-gradient(to right , #007bff 0%, #fc6075 100%);">
 	
 		<!-- Main Wrapper -->
 		<div class="main-wrapper">
@@ -80,7 +87,7 @@
 				<div class="container">
 					<!-- Account Logo -->
 					<div class="account-logo">
-						<a href="index.php"><img src="assets/img/logo2.png" alt="Company Logo"></a>
+						<a href="index.php"><img src="assets/img/logo_mini.png" alt="Company Logo"></a>
 					</div>
 					<!-- /Account Logo -->
 					
@@ -104,8 +111,8 @@
 								</div>
 								<?php if($wrongpassword){echo $wrongpassword;}?>
 								
-								<div class="form-group text-center">
-									<button class="btn btn-primary account-btn" name="login" type="submit">Login</button>
+								<div class="form-group text-center" >
+									<button class="btn btn-primary account-btn" name="login" type="submit" style="background:linear-gradient(to right , #007bff 0%, #fc6075 100%);">Login</button>
 										<div class="col-auto pt-2">
 											<a class="text-muted float-right" href="forgot-password.php">
 												Forgot password?
@@ -114,7 +121,7 @@
 								</div>
 									
 								<div class="account-footer">
-									<p>Having Trouble? report an issue on github <a target="https://github.com/MusheAbdulHakim/Smarthr---hr-payroll-project-employee-management-System/issues" href="https://github.com/MusheAbdulHakim/Smarthr---hr-payroll-project-employee-management-System/issues">Github issues</a></p>
+									
 								</div>
 							</form>
 							<!-- /Account Form -->

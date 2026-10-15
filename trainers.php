@@ -15,10 +15,10 @@
 		<meta name="keywords" content="admin, estimates, bootstrap, business, corporate, creative, management, minimal, modern, accounts, invoice, html5, responsive, CRM, Projects">
         <meta name="author" content="Dreamguys - Bootstrap Admin Template">
         <meta name="robots" content="noindex, nofollow">
-        <title>Trainers - HRMS admin template</title>
+        <title>Formateur - HRMS admin </title>
 		
 		<!-- Favicon -->
-        <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
+        <link rel="shortcut icon" type="image/x-icon" href="assets/img/logo_mini.png">
 		
 		<!-- Bootstrap CSS -->
         <link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -66,196 +66,107 @@
 					<div class="page-header">
 						<div class="row align-items-center">
 							<div class="col">
-								<h3 class="page-title">Trainers</h3>
+								<h3 class="page-title">Formateurs</h3>
 								<ul class="breadcrumb">
-									<li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
-									<li class="breadcrumb-item active">Trainers</li>
+									<li class="breadcrumb-item"><a href="index.php">Tableau de bord</a></li>
+									<li class="breadcrumb-item active">Formateurs</li>
 								</ul>
 							</div>
 							<div class="col-auto float-right ml-auto">
-								<a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_trainer"><i class="fa fa-plus"></i> Add New</a>
+								<a href="add_trainer.php" class="btn add-btn" ><i class="fa fa-plus"></i> Ajouter nouveau</a>
 							</div>
 						</div>
 					</div>
 					<!-- /Page Header -->
+					<table class="table table-striped custom-table datatable">
+					
+									<tbody>
+									<form  method="POST">
+						<div class="row filter-row">	
+						<div class="col-sm-6 col-md-3">  
+								<div class="form-group form-focus">
+									<input type="text" class="form-control floating" name="employé" required>
+									<label class="focus-label">Tapez ici</label>
+								</div>
+							</div> 
+							<div class="col-sm-6 col-md-3">  
+								<input type="submit" name="search" class="btn btn-success btn-block" value="Rechercher">  
+						</div>     
+						</div> 
+					</form>
+					<?php 
+						if(isset($_POST['search']))
+							{
+								$employé=$_POST['employé'];
+								$sql="SELECT * FROM trainer WHERE id='$employé' or nom='$employé' or prenom='$employé' or email='$employé' or contact='$employé' or typetraining='$employé' ";
+							}
+							else
+							{
+								$sql="SELECT * FROM trainer";
+						}
+					?>
 					
 					<div class="row">
 						<div class="col-md-12">
 							<div class="table-responsive">
-								<table class="table table-striped custom-table mb-0 datatable">
+								<table class="table table-striped custom-table datatable">
 									<thead>
 										<tr>
-											<th style="width: 30px;">#</th>
-											<th>Name </th>
-											<th>Contact Number </th>
+										<th style="width: 30px;">#</th>
+											<th>Nom et Prénom </th>
 											<th>Email </th>
-											<th>Description </th>
-											<th>Status </th>
+											<th>Contact </th>
+											<th>Formation</th>
 											<th class="text-right">Action</th>
 										</tr>
 									</thead>
+									<?php
+										// $sql = "SELECT * FROM employees";
+										$query = $dbh->prepare($sql);
+										$query->execute();
+										$results=$query->fetchAll(PDO::FETCH_OBJ);
+										$cnt=1;
+										if($query->rowCount() > 0)
+										{
+										foreach($results as $row)
+										{	
+									?>
 									<tbody>
 										<tr>
-											<td>1</td>
+											<td><?php echo htmlentities($row->id);?></td>
 											<td>
-												<h2 class="table-avatar">
-													<a href="profile.php" class="avatar"><img alt="" src="assets/img/profiles/avatar-02.jpg"></a>
-													<a href="profile.php">John Doe </a>
+												<h2>
+													<?php echo htmlentities($row->prenom)." ".htmlentities($row->nom); ?>
 												</h2>
 											</td>
-											<td>9876543210</td>
-											<td>johndoe@example.com</td>
-											<td>Lorem ipsum dollar</td>
-											<td>
-												<div class="dropdown action-label">
-													<a class="btn btn-white btn-sm btn-rounded dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">
-														<i class="fa fa-dot-circle-o text-danger"></i> Inactive
-													</a>
-													<div class="dropdown-menu">
-														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-success"></i> Active</a>
-														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-danger"></i> Inactive</a>
-													</div>
-												</div>
-											</td>
+											<td><?php echo htmlentities($row->email);?></td>
+											<td><?php echo htmlentities($row->contact);?></td>
+											<td><?php echo htmlentities($row->typetraining);?></td>
 											<td class="text-right">
 												<div class="dropdown dropdown-action">
 													<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
 													<div class="dropdown-menu dropdown-menu-right">
-														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_type"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_type"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-													</div>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>2</td>
-											<td>
-												<h2 class="table-avatar">
-													<a href="profile.php" class="avatar"><img alt="" src="assets/img/profiles/avatar-05.jpg"></a>
-													<a href="profile.php">Mike Litorus </a>
-												</h2>
-											</td>
-											<td>9876543120</td>
-											<td>mikelitorus@example.com</td>
-											<td>Lorem ipsum dollar</td>
-											<td>
-												<div class="dropdown action-label">
-													<a class="btn btn-white btn-sm btn-rounded dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">
-														<i class="fa fa-dot-circle-o text-success"></i> Active
-													</a>
-													<div class="dropdown-menu">
-														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-success"></i> Active</a>
-														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-danger"></i> Inactive</a>
-													</div>
-												</div>
-											</td>
-											<td class="text-right">
-												<div class="dropdown dropdown-action">
-													<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-													<div class="dropdown-menu dropdown-menu-right">
-														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_type"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_type"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-													</div>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>3</td>
-											<td>
-												<h2 class="table-avatar">
-													<a href="profile.php" class="avatar"><img alt="" src="assets/img/profiles/avatar-11.jpg"></a>
-													<a href="profile.php">Wilmer Deluna </a>
-												</h2>
-											</td>
-											<td>9876543210</td>
-											<td>wilmerdeluna@example.com</td>
-											<td>Lorem ipsum dollar</td>
-											<td>
-												<div class="dropdown action-label">
-													<a class="btn btn-white btn-sm btn-rounded dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">
-														<i class="fa fa-dot-circle-o text-danger"></i> Inactive
-													</a>
-													<div class="dropdown-menu">
-														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-success"></i> Active</a>
-														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-danger"></i> Inactive</a>
-													</div>
-												</div>
-											</td>
-											<td class="text-right">
-												<div class="dropdown dropdown-action">
-													<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-													<div class="dropdown-menu dropdown-menu-right">
-														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_type"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_type"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-													</div>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>4</td>
-											<td>
-												<h2 class="table-avatar">
-													<a href="profile.php" class="avatar"><img alt="" src="assets/img/profiles/avatar-10.jpg"></a>
-													<a href="profile.php">John Smith </a>
-												</h2>
-											</td>
-											<td>9876543210</td>
-											<td>johnsmith@example.com</td>
-											<td>Lorem ipsum dollar</td>
-											<td>
-												<div class="dropdown action-label">
-													<a class="btn btn-white btn-sm btn-rounded dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">
-														<i class="fa fa-dot-circle-o text-danger"></i> Inactive
-													</a>
-													<div class="dropdown-menu">
-														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-success"></i> Active</a>
-														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-danger"></i> Inactive</a>
-													</div>
-												</div>
-											</td>
-											<td class="text-right">
-												<div class="dropdown dropdown-action">
-													<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-													<div class="dropdown-menu dropdown-menu-right">
-														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_type"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_type"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-													</div>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>5</td>
-											<td>
-												<h2 class="table-avatar">
-													<a href="profile.php" class="avatar"><img alt="" src="assets/img/profiles/avatar-09.jpg"></a>
-													<a href="profile.php">Richard Miles </a>
-												</h2>
-											</td>
-											<td>9876543210</td>
-											<td>richardmiles@example.com</td>
-											<td>Lorem ipsum dollar</td>
-											<td>
-												<div class="dropdown action-label">
-													<a class="btn btn-white btn-sm btn-rounded dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">
-														<i class="fa fa-dot-circle-o text-danger"></i> Inactive
-													</a>
-													<div class="dropdown-menu">
-														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-success"></i> Active</a>
-														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-danger"></i> Inactive</a>
-													</div>
-												</div>
-											</td>
-											<td class="text-right">
-												<div class="dropdown dropdown-action">
-													<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-													<div class="dropdown-menu dropdown-menu-right">
-														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_type"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_type"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_employee"><i class="fa fa-pencil m-r-5"></i> Edit</a>
+														<a class="dropdown-item" href="delete/delete_employee.php?id=<?php echo htmlentities($row->id); ?>" ><i class="fa fa-trash-o m-r-5"></i> Delete</a>
 													</div>
 												</div>
 											</td>
 										</tr>
 									</tbody>
+									<?php $cnt +=1;
+										}
+									}
+									else{
+										echo "<div 
+										style='background-color: #f08080;
+										color: white;
+										width: 250px;
+										height: 40px;
+										text-align: center;'>
+										<p> Aucun résultat trouvé pour $employé.</p>
+										</div></br>
+										";
+										}?>
 								</table>
 							</div>
 						</div>

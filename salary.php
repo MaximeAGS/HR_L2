@@ -15,10 +15,10 @@
 		<meta name="keywords" content="admin, estimates, bootstrap, business, corporate, creative, management, minimal, modern, accounts, invoice, html5, responsive, CRM, Projects">
         <meta name="author" content="Dreamguys - Bootstrap Admin Template">
         <meta name="robots" content="noindex, nofollow">
-        <title>Salary - HRMS admin template</title>
+        <title>Salary - HRMS admin </title>
 		
 		<!-- Favicon -->
-        <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
+        <link rel="shortcut icon" type="image/x-icon" href="assets/img/logo_mini.png">
 		
 		<!-- Bootstrap CSS -->
         <link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -69,21 +69,21 @@
 					<div class="page-header">
 						<div class="row align-items-center">
 							<div class="col">
-								<h3 class="page-title">Employee Salary</h3>
+								<h3 class="page-title"> Salaire des employés </h3>
 								<ul class="breadcrumb">
-									<li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
-									<li class="breadcrumb-item active">Salary</li>
+									<li class="breadcrumb-item"><a href="index.php">Tableau de bord</a></li>
+									<li class="breadcrumb-item active">Salaire</li>
 								</ul>
 							</div>
-							<div class="col-auto float-right ml-auto">
-								<a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_salary"><i class="fa fa-plus"></i> Add Salary</a>
-							</div>
+							<!-- <div class="col-auto float-right ml-auto">
+								<a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_salary"><i class="fa fa-plus"></i> Ajouter salaire</a>
+							</div> -->
 						</div>
 					</div>
 					<!-- /Page Header -->
 					
 					<!-- Search Filter -->
-					<div class="row filter-row">
+					<!-- <div class="row filter-row">
 					   <div class="col-sm-6 col-md-3 col-lg-3 col-xl-2 col-12">  
 							<div class="form-group form-focus">
 								<input type="text" class="form-control floating">
@@ -130,7 +130,7 @@
 						<div class="col-sm-6 col-md-3 col-lg-3 col-xl-2 col-12">  
 							<a href="#" class="btn btn-success btn-block"> Search </a>  
 						</div>     
-                    </div>
+                    </div> -->
 					<!-- /Search Filter -->
 					
 					<div class="row">
@@ -139,17 +139,36 @@
 								<table class="table table-striped custom-table datatable">
 									<thead>
 										<tr>
-											<th>Employee</th>
-											<th>Employee ID</th>
-											<th>Email</th>
-											<th>Join Date</th>
+											<th>Employee_id</th>
+											<th>Nom et Prénom</th>
 											<th>Role</th>
 											<th>Salary</th>
-											<th>Payslip</th>
-											<th class="text-right">Action</th>
 										</tr>
 									</thead>
+									<?php
+										$sql = "SELECT * FROM employees";
+										$query = $dbh->prepare($sql);
+										$query->execute();
+										$results=$query->fetchAll(PDO::FETCH_OBJ);
+										$cnt=1;
+										if($query->rowCount() > 0)
+										{
+										foreach($results as $row)
+										{	
+									?>
 									<tbody>
+										<tr>
+											<td><?php echo htmlentities($row->Employee_id); ?></td>
+											<td><?php echo htmlentities($row->FirstName)." ".htmlentities($row->LastName); ?></td>
+											<td><?php echo htmlentities($row->Designation);?></td>
+											<td><?php echo htmlentities($row->salary);?> Fcfa</td>
+										</tr>
+									</tbody>
+									<?php $cnt+=1; 
+								}
+								}?>
+								</table>
+									<!-- <tbody>
 										<tr>
 											<td>
 												<h2 class="table-avatar">
@@ -513,7 +532,7 @@
 												</div>
 											</td>
 										</tr>
-									</tbody>
+									</tbody> -->
 								</table>
 							</div>
 						</div>

@@ -23,10 +23,10 @@
 		<meta name="keywords" content="admin, estimates, bootstrap, business, corporate, creative, management, minimal, modern, accounts, invoice, html5, responsive, CRM, Projects">
         <meta name="author" content="Dreamguys - Bootstrap Admin Template">
         <meta name="robots" content="noindex, nofollow">
-        <title>Clients - HRMS admin template</title>
+        <title>Clients - HRMS admin </title>
 		
 		<!-- Favicon -->
-        <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
+        <link rel="shortcut icon" type="image/x-icon" href="assets/img/logo_mini.png">
 		
 		<!-- Bootstrap CSS -->
         <link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -79,7 +79,7 @@
 							</div>
 							<?php if($wrongpassword){echo $wrongpassword;} ?>
 							<div class="col-auto float-right ml-auto">
-								<a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_client"><i class="fa fa-plus"></i> Add Client</a>
+								<a href="add_client.php" class="btn add-btn"><i class="fa fa-plus"></i> Add Client</a>
 								<div class="view-icons">
 									<a href="clients.php" class="grid-view btn btn-link active"><i class="fa fa-th"></i></a>
 									<a href="clients-list.php" class="list-view btn btn-link"><i class="fa fa-bars"></i></a>
@@ -90,7 +90,7 @@
 					<!-- /Page Header -->
 					
 					<!-- Search Filter -->
-					<div class="row filter-row">
+					<!-- <div class="row filter-row">
 						<div class="col-sm-6 col-md-3">  
 							<div class="form-group form-focus">
 								<input type="text" class="form-control floating">
@@ -116,7 +116,7 @@
 						<div class="col-sm-6 col-md-3">  
 							<a href="#" class="btn btn-success btn-block"> Search </a>  
 						</div>     
-                    </div>
+                    </div> -->
 					<!-- Search Filter -->
 					
 					<div class="row staff-grid-row">
@@ -140,7 +140,7 @@
 									<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
                                 <div class="dropdown-menu dropdown-menu-right">
                                     <a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_client"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-                                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_client"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+                                    <a class="dropdown-item" href="delete/delete_clients.php?id=<?php echo htmlentities($row->id_client); ?>"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
                                 </div>
 								</div>
 								<h4 class="user-name m-t-10 mb-0 text-ellipsis"><a href="client-profile.php"><?php echo htmlentities($row->Company);?></a></h4>

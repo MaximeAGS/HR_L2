@@ -18,7 +18,7 @@
         <title>Create Invoice - HRMS admin template</title>
 		
 		<!-- Favicon -->
-        <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
+        <link rel="shortcut icon" type="image/x-icon" href="assets/img/logo_mini.png">
 		
 		<!-- Bootstrap CSS -->
         <link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -251,8 +251,7 @@
 									</div>
 								</div>
 								<div class="submit-section">
-									<button class="btn btn-primary submit-btn m-r-10">Save & Send</button>
-									<button class="btn btn-primary submit-btn">Save</button>
+									<button class="btn btn-success submit-btn">Save</button>
 								</div>
 							</form>
 						</div>

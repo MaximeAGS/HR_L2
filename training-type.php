@@ -15,10 +15,10 @@
 		<meta name="keywords" content="admin, estimates, bootstrap, business, corporate, creative, management, minimal, modern, accounts, invoice, html5, responsive, CRM, Projects">
         <meta name="author" content="Dreamguys - Bootstrap Admin Template">
         <meta name="robots" content="noindex, nofollow">
-        <title>Training - HRMS admin template</title>
+        <title>Formation - HRMS admin </title>
 		
 		<!-- Favicon -->
-        <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
+        <link rel="shortcut icon" type="image/x-icon" href="assets/img/logo_mini.png">
 		
 		<!-- Bootstrap CSS -->
         <link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -66,159 +66,104 @@
 					<div class="page-header">
 						<div class="row align-items-center">
 							<div class="col">
-								<h3 class="page-title">Training Type</h3>
+								<h3 class="page-title">Type de formation</h3>
 								<ul class="breadcrumb">
-									<li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
-									<li class="breadcrumb-item active">Training Type</li>
+									<li class="breadcrumb-item"><a href="index.php">Tableau de bord</a></li>
+									<li class="breadcrumb-item active"> Type de Formation</li>
 								</ul>
 							</div>
 							<div class="col-auto float-right ml-auto">
-								<a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_type"><i class="fa fa-plus"></i> Add Type</a>
+								<a href="add_typetrainer.php" class="btn add-btn" ><i class="fa fa-plus"></i>Ajouter Formation</a>
 							</div>
 						</div>
 					</div>
 					<!-- /Page Header -->
 					
+					<table class="table table-striped custom-table datatable">
+					
+									<tbody>
+									<form  method="POST">
+						<div class="row filter-row">	
+						<div class="col-sm-6 col-md-3">  
+								<div class="form-group form-focus">
+									<input type="text" class="form-control floating" name="employé" required>
+									<label class="focus-label">Tapez ici</label>
+								</div>
+							</div> 
+							<div class="col-sm-6 col-md-3">  
+								<input type="submit" name="search" class="btn btn-success btn-block" value="Rechercher">  
+						</div>     
+						</div> 
+					</form>
+					<?php 
+						if(isset($_POST['search']))
+							{
+								$employé=$_POST['employé'];
+								$sql="SELECT * FROM typetrainer WHERE id='$employé' or type='$employé' or description='$employé' ";
+							}
+							else
+							{
+								$sql="SELECT * FROM typetrainer";
+						}
+					?>
+					
 					<div class="row">
 						<div class="col-md-12">
 							<div class="table-responsive">
-								<table class="table table-striped custom-table mb-0 datatable">
+								<table class="table table-striped custom-table datatable">
 									<thead>
 										<tr>
-											<th style="width: 30px;">#</th>
-											<th>Type </th>
+										<th style="width: 30px;">#</th>
+											<th>Type</th>
 											<th>Description </th>
-											<th>Status </th>
 											<th class="text-right">Action</th>
 										</tr>
 									</thead>
+									<?php
+										// $sql = "SELECT * FROM employees";
+										$query = $dbh->prepare($sql);
+										$query->execute();
+										$results=$query->fetchAll(PDO::FETCH_OBJ);
+										$cnt=1;
+										if($query->rowCount() > 0)
+										{
+										foreach($results as $row)
+										{	
+									?>
 									<tbody>
 										<tr>
-											<td>1</td>
-											<td>Node Training</td>
-											<td>Lorem ipsum dollar</td>
+											<td><?php echo htmlentities($row->id);?></td>
 											<td>
-												<div class="dropdown action-label">
-													<a class="btn btn-white btn-sm btn-rounded dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">
-														<i class="fa fa-dot-circle-o text-danger"></i> Inactive
-													</a>
-													<div class="dropdown-menu">
-														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-success"></i> Active</a>
-														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-danger"></i> Inactive</a>
-													</div>
-												</div>
+												<h2>
+													<?php echo htmlentities($row->type); ?>
+												</h2>
 											</td>
+											<td><?php echo htmlentities($row->description);?></td>
 											<td class="text-right">
 												<div class="dropdown dropdown-action">
 													<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
 													<div class="dropdown-menu dropdown-menu-right">
-														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_type"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_type"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-													</div>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>2</td>
-											<td>Git Training</td>
-											<td>Lorem ipsum dollar</td>
-											<td>
-												<div class="dropdown action-label">
-													<a class="btn btn-white btn-sm btn-rounded dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">
-														<i class="fa fa-dot-circle-o text-success"></i> Active
-													</a>
-													<div class="dropdown-menu">
-														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-success"></i> Active</a>
-														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-danger"></i> Inactive</a>
-													</div>
-												</div>
-											</td>
-											<td class="text-right">
-												<div class="dropdown dropdown-action">
-													<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-													<div class="dropdown-menu dropdown-menu-right">
-														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_type"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_type"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-													</div>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>3</td>
-											<td>Swift Training</td>
-											<td>Lorem ipsum dollar</td>
-											<td>
-												<div class="dropdown action-label">
-													<a class="btn btn-white btn-sm btn-rounded dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">
-														<i class="fa fa-dot-circle-o text-danger"></i> Inactive
-													</a>
-													<div class="dropdown-menu">
-														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-success"></i> Active</a>
-														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-danger"></i> Inactive</a>
-													</div>
-												</div>
-											</td>
-											<td class="text-right">
-												<div class="dropdown dropdown-action">
-													<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-													<div class="dropdown-menu dropdown-menu-right">
-														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_type"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_type"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-													</div>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>4</td>
-											<td>Html Training</td>
-											<td>Lorem ipsum dollar</td>
-											<td>
-												<div class="dropdown action-label">
-													<a class="btn btn-white btn-sm btn-rounded dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">
-														<i class="fa fa-dot-circle-o text-danger"></i> Inactive
-													</a>
-													<div class="dropdown-menu">
-														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-success"></i> Active</a>
-														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-danger"></i> Inactive</a>
-													</div>
-												</div>
-											</td>
-											<td class="text-right">
-												<div class="dropdown dropdown-action">
-													<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-													<div class="dropdown-menu dropdown-menu-right">
-														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_type"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_type"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-													</div>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>5</td>
-											<td>Laravel Training</td>
-											<td>Lorem ipsum dollar</td>
-											<td>
-												<div class="dropdown action-label">
-													<a class="btn btn-white btn-sm btn-rounded dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">
-														<i class="fa fa-dot-circle-o text-danger"></i> Inactive
-													</a>
-													<div class="dropdown-menu">
-														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-success"></i> Active</a>
-														<a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-danger"></i> Inactive</a>
-													</div>
-												</div>
-											</td>
-											<td class="text-right">
-												<div class="dropdown dropdown-action">
-													<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-													<div class="dropdown-menu dropdown-menu-right">
-														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_type"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_type"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_employee"><i class="fa fa-pencil m-r-5"></i> Edit</a>
+														<a class="dropdown-item" href="delete/delete_employee.php?id=<?php echo htmlentities($row->id); ?>" ><i class="fa fa-trash-o m-r-5"></i> Delete</a>
 													</div>
 												</div>
 											</td>
 										</tr>
 									</tbody>
+									<?php $cnt +=1;
+										}
+									}
+									else{
+										echo "<div 
+										style='background-color: #f08080;
+										color: white;
+										width: 250px;
+										height: 40px;
+										text-align: center;'>
+										<p> Aucun résultat trouvé pour $employé.</p>
+										</div></br>
+										";
+										}?>
 								</table>
 							</div>
 						</div>

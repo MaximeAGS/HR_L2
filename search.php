@@ -15,10 +15,10 @@
 		<meta name="keywords" content="admin, estimates, bootstrap, business, corporate, creative, management, minimal, modern, accounts, invoice, html5, responsive, CRM, Projects">
         <meta name="author" content="Dreamguys - Bootstrap Admin Template">
         <meta name="robots" content="noindex, nofollow">
-        <title>Search Results - HRMS admin template</title>
+        <title>Search Results - HRMS admin</title>
 		
 		<!-- Favicon -->
-        <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
+        <link rel="shortcut icon" type="image/x-icon" href="assets/img/logo_mini.png">
 		
 		<!-- Bootstrap CSS -->
         <link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -57,7 +57,7 @@
                 <div class="content container-fluid">
 				
 					<!-- Page Header -->
-					<div class="page-header">
+					<!-- <div class="page-header">
 						<div class="row">
 							<div class="col-sm-12">
 								<h3 class="page-title">Search</h3>
@@ -67,7 +67,7 @@
 								</ul>
 							</div>
 						</div>
-					</div>
+					</div> -->
 					<!-- /Page Header -->
 					
 					<!-- Content Starts -->
@@ -75,7 +75,7 @@
 							<div class="col-12">
 							
 								<!-- Search Form -->
-								<div class="main-search">
+								<!-- <div class="main-search">
 									<form action="#">
 										<div class="input-group">
 											<input type="text" class="form-control">
@@ -84,10 +84,10 @@
 											</div>
 										</div>
 									</form>
-								</div>
+								</div> -->
 								<!-- /Search Form -->
 								
-								<div class="search-result">
+								<!-- <div class="search-result">
 									<h3>Search Result Found For: <u>Keyword</u></h3>
 									<p>215 Results found</p>
 								</div>
@@ -896,7 +896,7 @@
 								</div>
 								
 							</div>
-						</div>
+						</div> -->
 					<!-- /Content End -->
 					
                 </div>

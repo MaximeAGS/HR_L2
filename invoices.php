@@ -18,7 +18,7 @@
         <title>Invoices - HRMS admin template</title>
 		
 		<!-- Favicon -->
-        <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
+        <link rel="shortcut icon" type="image/x-icon" href="assets/img/logo_mini.png">
 		
 		<!-- Bootstrap CSS -->
         <link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -80,7 +80,7 @@
 					<!-- /Page Header -->
 					
 					<!-- Search Filter -->
-					<div class="row filter-row">
+					<!-- <div class="row filter-row">
 						<div class="col-sm-6 col-md-3">  
 							<div class="form-group form-focus">
 								<div class="cal-icon">
@@ -111,7 +111,7 @@
 						<div class="col-sm-6 col-md-3">  
 							<a href="#" class="btn btn-success btn-block"> Search </a>  
 						</div>     
-                    </div>
+                    </div> -->
 					<!-- /Search Filter -->
 					
 					<div class="row">

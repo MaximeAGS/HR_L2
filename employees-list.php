@@ -24,10 +24,10 @@
 		<meta name="keywords" content="admin, estimates, bootstrap, business, corporate, creative, management, minimal, modern, accounts, invoice, html5, responsive, CRM, Projects">
         <meta name="author" content="Dreamguys - Bootstrap Admin Template">
         <meta name="robots" content="noindex, nofollow">
-        <title>Employees - HRMS admin template</title>
+        <title>Employees - HRMS admin </title>
 		
 		<!-- Favicon -->
-        <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
+        <link rel="shortcut icon" type="image/x-icon" href="assets/img/logo_mini.png">
 		
 		<!-- Bootstrap CSS -->
         <link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -78,16 +78,16 @@
 					<div class="page-header">
 						<div class="row align-items-center">
 							<div class="col">
-								<h3 class="page-title">Employee</h3>
+								<h3 class="page-title">Employé</h3>
 								<ul class="breadcrumb">
-									<li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
+									<li class="breadcrumb-item"><a href="index.php">Tableau de bord</a></li>
 									<li class="breadcrumb-item active">Employee</li>
 								</ul>
 							</div>
 							<div class="col-auto float-right ml-auto">
-								<a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_employee"><i class="fa fa-plus"></i> Add Employee</a>
+								<a href="add_employee.php" class="btn add-btn" ><i class="fa fa-plus"></i> Ajouter employé</a>
 								<div class="view-icons">
-									<a href="employees.php" title="Grid View" class="grid-view btn btn-link active"><i class="fa fa-th"></i></a>
+									<!-- <a href="employees.php" title="Grid View" class="grid-view btn btn-link active"><i class="fa fa-th"></i></a> -->
 									<a href="employees-list.php" title="Tabular View" class="list-view btn btn-link"><i class="fa fa-bars"></i></a>
 								</div>
 							</div>
@@ -96,36 +96,30 @@
 					<!-- /Page Header -->
 					
 					<!-- Search Filter -->
-					<div class="row filter-row">
+					<form  method="POST">
+						<div class="row filter-row">	
 						<div class="col-sm-6 col-md-3">  
-							<div class="form-group form-focus">
-								<input type="text" class="form-control floating">
-								<label class="focus-label">Employee ID</label>
-							</div>
-						</div>
-						<div class="col-sm-6 col-md-3">  
-							<div class="form-group form-focus">
-								<input type="text" class="form-control floating">
-								<label class="focus-label">Employee Name</label>
-							</div>
-						</div>
-						<div class="col-sm-6 col-md-3"> 
-							<div class="form-group form-focus select-focus">
-								<select class="select floating"> 
-									<option>Select Designation</option>
-									<option>Web Developer</option>
-									<option>Web Designer</option>
-									<option>Android Developer</option>
-									<option>Ios Developer</option>
-								</select>
-								<label class="focus-label">Designation</label>
-							</div>
-						</div>
-						<div class="col-sm-6 col-md-3">  
-							<a href="#" class="btn btn-success btn-block"> Search </a>  
+								<div class="form-group form-focus">
+									<input type="text" class="form-control floating" name="employé" required>
+									<label class="focus-label">Tapez ici</label>
+								</div>
+							</div> 
+							<div class="col-sm-6 col-md-3">  
+								<input type="submit" name="search" class="btn btn-success btn-block" value="Rechercher">  
 						</div>     
-                    </div>
-					<!-- /Search Filter -->
+						</div> 
+					</form>
+					<?php 
+						if(isset($_POST['search']))
+							{
+								$employé=$_POST['employé'];
+								$sql="SELECT * FROM employees WHERE Employee_id='$employé' or FirstName='$employé' or LastName='$employé' or UserName='$employé' or Email='$employé' or Password='$employé' or Phone='$employé' or Department='$employé' or Designation='$employé' or salary='$employé' or Joining_Date='$employé' or DateTime='$employé' ";
+							}
+							else
+							{
+								$sql="SELECT * FROM employees";
+						}
+					?>
 					
 					<div class="row">
 						<div class="col-md-12">
@@ -133,8 +127,8 @@
 								<table class="table table-striped custom-table datatable">
 									<thead>
 										<tr>
-											<th>Name</th>
 											<th>Employee ID</th>
+											<th>Name</th>
 											<th>Email</th>
 											<th>Mobile</th>
 											<th class="text-nowrap">Join Date</th>
@@ -143,7 +137,7 @@
 										</tr>
 									</thead>
 									<?php
-										$sql = "SELECT * FROM employees";
+										// $sql = "SELECT * FROM employees";
 										$query = $dbh->prepare($sql);
 										$query->execute();
 										$results=$query->fetchAll(PDO::FETCH_OBJ);
@@ -155,13 +149,13 @@
 									?>
 									<tbody>
 										<tr>
+											<td><?php echo htmlentities($row->Employee_id);?></td>
 											<td>
-												<h2 class="table-avatar">
-													<a href="profile.php" class="avatar"><img alt="picture" src="employees/<?php echo htmlentities($row->Picture);?>"></a>
-													<a href="profile.php"><?php echo htmlentities($row->FirstName)." ".htmlentities($row->LastName); ?><span><?php echo htmlentities($row->Designation);?></span></a>
+												<h2>
+													<!-- <a href="profile.php" class="avatar"><img alt="picture" src="employees/<?php echo htmlentities($row->Picture);?>"></a> -->
+													<?php echo htmlentities($row->FirstName)." ".htmlentities($row->LastName); ?><span><?php echo htmlentities($row->Designation);?></span>
 												</h2>
 											</td>
-											<td><?php echo htmlentities($row->Employee_Id);?></td>
 											<td><?php echo htmlentities($row->Email);?></td>
 											<td><?php echo htmlentities($row->Phone);?></td>
 											<td><?php echo htmlentities($row->Joining_Date);?></td>
@@ -170,8 +164,8 @@
 												<div class="dropdown dropdown-action">
 													<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
 													<div class="dropdown-menu dropdown-menu-right">
-														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_employee"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-														<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_employee"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+														<a class="dropdown-item" href="edit_employé.php?id=<?php echo htmlentities($row->Employee_id); ?>" ><i class="fa fa-pencil m-r-5"></i> Edit</a>
+														<a class="dropdown-item" href="delete/delete_employee.php?id=<?php echo htmlentities($row->Employee_id); ?>" ><i class="fa fa-trash-o m-r-5"></i> Delete</a>
 													</div>
 												</div>
 											</td>
@@ -179,7 +173,18 @@
 									</tbody>
 									<?php $cnt +=1;
 										}
-									}?>
+									}
+									else{
+										echo "<div 
+										style='background-color: #f08080;
+										color: white;
+										width: 250px;
+										height: 40px;
+										text-align: center;'>
+										<p> Aucun résultat trouvé pour $employé.</p>
+										</div></br>
+										";
+										}?>
 								</table>
 							</div>
 						</div>
